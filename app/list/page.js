@@ -1,14 +1,11 @@
-// page만드는 법!!
-// 폴더 생성후 파일 생성
-// list폴더 생성 후 page.js 파일 생성
-// /list 접속시 page.js의 html 전송됨!
-
+"use client";
 import Image from "next/image";
+import { useState } from "react";
 // import tomato from "/public/tomato.png";
 
 export default function List() {
   let 상품 = ["Tomatoes", "Pasta", "Coconut"];
-  let array = [2, 3, 4];
+  let [수량, 수량변경] = useState(0);
 
   return (
     <div>
@@ -20,6 +17,14 @@ export default function List() {
             <img src={`food${i}.png`} className="food-img"></img>
             {/* <Image src={tomato} className="food-img" /> */}
             <h4>{상품[i]} $40</h4>
+            <span> {수량} </span>
+            <button
+              onClick={() => {
+                수량변경(수량 + 1);
+              }}
+            >
+              +
+            </button>
           </div>
         );
       })}
