@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function List() {
   let 상품 = ["Tomatoes", "Pasta", "Coconut"];
-  let [수량, 수량변경] = useState(0);
+  let [수량, 수량변경] = useState([0, 0, 0]);
 
   return (
     <div>
@@ -17,13 +17,24 @@ export default function List() {
             <img src={`food${i}.png`} className="food-img"></img>
             {/* <Image src={tomato} className="food-img" /> */}
             <h4>{상품[i]} $40</h4>
-            <span> {수량} </span>
+            <span> {수량[i]} </span>
             <button
               onClick={() => {
-                수량변경(수량 + 1);
+                let copy = [...수량];
+                copy[i]++;
+                수량변경(copy);
               }}
             >
               +
+            </button>
+            <button
+              onClick={() => {
+                let copy = [...수량];
+                copy[i]--;
+                수량변경(copy);
+              }}
+            >
+              -
             </button>
           </div>
         );
